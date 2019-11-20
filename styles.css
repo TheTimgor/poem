@@ -85,6 +85,7 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	margin: 0 60px;
 }
 
 .pageitem {
@@ -165,13 +166,13 @@ h1 {
 	color: #995918;
 }
 .fscreen {
-    margin: 0;
+    margin: auto 0;
 	padding: 0;
 	position: absolute;
 	height: 40px;
     width: 40px;
-    left: calc(25% - 50px);
-	z-index: 3;
+    left: 0;
+    z-index: 3;
 }
 .fscreenitem {
     z-index: 4;

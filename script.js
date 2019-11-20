@@ -134,7 +134,7 @@ $(document).ready(function(){
                             $frame.attr('src',path)
                             let $fwrapper = $('<div/>').append($frame)
                             $pageitem.append($fwrapper);
-                            $desc.find('.page').append($('<img src="fullscreen.svg" class="fscreen">').click(function(){
+                            $pageitem.append($('<img src="fullscreen.svg" class="fscreen">').click(function(){
                                 $frame.toggleClass('fscreenitem');
                             }));
                             if(!$thumb.attr("src")) $thumb.attr("src","pdfdefault.svg");

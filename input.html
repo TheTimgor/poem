@@ -16,6 +16,13 @@
             left: 0;
             min-height: 4em;
         }
+        .stztext {
+            border-top: 1px solid lightgrey; 
+            border-bottom: 1px solid lightgrey; 
+            height: 5.5em;
+            padding: 5px 0;
+            line-height: 1.1em;
+        }
         @media only screen and (min-width: 400px) {
             form {
                 width: 50%;
@@ -78,7 +85,7 @@
                     <input onchange="updatepreview()" id="stanza" type="number" name="stanza" class="form-control" min="1" max="1" value="1" required> </textarea>
                 </div>
                 <div class="col">
-                    <small class="form-text text-muted" id="stztext" style="height:5em;"></small>
+                    <small class="form-text text-muted stztext" id="stztext"> </small>
                 </div>
             </div>
         </div>
