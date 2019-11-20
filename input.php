@@ -25,22 +25,25 @@
 		$file_ext= pathinfo($file_name, PATHINFO_EXTENSION);
 		move_uploaded_file($file_tmp,'icon.'.$file_ext);
 	}
-	var_dump($_FILES["filecontent"]["name"] != "");
-	if($_FILES["filecontent"]["name"] != ""){
-		// echo "file content: ";
-		// print_r($_FILES['filecontent']);
-		$file_name = $_FILES['filecontent']['name'];
-		$file_tmp =$_FILES['filecontent']['tmp_name'];
+	// var_dump($_FILES["filecontent"]);
+	foreach(array_keys($_FILES["filecontent"]["name"]) as $i){
+		// echo "<br>file content: ";
+		print_r($file);
+		$file_name = $_FILES["filecontent"]["name"][$i];
+		$file_tmp = $_FILES["filecontent"]['tmp_name'][$i];
 		move_uploaded_file($file_tmp,$file_name);
 	} 
-	if(isset($_POST["linkcontent"])) {
+	unset($i);
+	// echo "<br>";
+	// var_dump($_POST["linkcontent"]);
+	foreach($_POST["linkcontent"] as $i => $link){
 		// echo "link content: ";
 		// echo $_POST["linkcontent"];
-		file_put_contents("content.txt", $_POST["linkcontent"]);
+		if($link != ""){
+			file_put_contents("content".$i.".txt", $link);
+		}
 	}
-	if(isset($_POST["caption"])){
-		file_put_contents("caption.txt", $_POST["caption"]);
-	}
+	file_put_contents("caption.txt", $_POST["caption"]);
 	?>
 </body>
 </html> 

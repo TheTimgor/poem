@@ -23,6 +23,27 @@
             padding: 5px 0;
             line-height: 1.1em;
         }
+        .add {
+            background-color: white;
+            width: 19px;
+            height: 19px;
+            margin-top: 5px;
+            margin-left: -9px;
+            padding: 2px;
+            overflow: visible;
+            fill: #ced4da;
+        }
+        .new {
+            border: 1px solid #ced4da;
+            border-top: none;
+            border-radius: 0 0 .25rem .25rem;
+            height: 1em;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .addcontent {
+            margin-bottom: 5px;
+        }
         @media only screen and (min-width: 400px) {
             form {
                 width: 50%;
@@ -35,8 +56,9 @@
     var stzs = []
         window.onload = function(){
             window.addEventListener("keydown", function(e){
-                if(e.key=='Enter'){
+                if(event.target.tagName != 'TEXTAREA' && e.key=='Enter'){
                     e.preventDefault();
+                    return false;
                 }
             });
             const Http = new XMLHttpRequest();
@@ -55,20 +77,14 @@
         function updatepreview(){
             document.getElementById('stztext').innerText = stzs[document.getElementById('stanza').value-1];
         }
-        function toggleoption(){
-            for(e of document.getElementsByClassName('nav-link')){
-                e.classList.toggle('active')
-            }
-            for(e of document.getElementsByClassName('prescontent')){
-                e.classList.toggle('d-none')
-            }
-            for(e of document.getElementsByClassName('addcontent')){
-                if(e.required){
-                    e.removeAttribute('required');
-                } else {
-                    e.setAttribute('required', '')
-                }
-            }
+        function addfield(){
+            let addnew = document.getElementById('new');
+            let group = document.getElementById('links');
+            let input = document.createElement('INPUT');
+            input.type = 'text';
+            input.name = 'linkcontent[]';
+            input.className = 'form-control addcontent';
+            group.insertBefore(input, addnew);
         }
     </script>
   </head>
@@ -101,19 +117,20 @@
             <br> (Optional. Images and video links will have icons generated automatically.) </small>
         </div>
         <div class="form-group">
-                <label for="filecontent"> File </label>
-                <input type="file" name="filecontent" class="form-control-file addcontent" required>
-                <small class="form-text text-muted"> The main content of your presentation. Can be an image, pdf, or .txt file. </small>
+            <label for="filecontent"> Files </label>
+            <input type="file" name="filecontent[]" class="form-control-file" multiple>
+            <small class="form-text text-muted"> The main content of your presentation, as files. Supported types are image, pdf, or .txt. You may select multiple files. </small>
         </div>
-        <div class="form-group">
-                <label for="linkcontent"> Link </label>
-                <input type="text" name="linkcontent" class="form-control addcontent">
-                <small class="form-text text-muted"> The main content of your presentation, as a link to another website. Youtube and Vimeo work best.</small>
+        <div class="form-group" id="links">
+            <label for="linkcontent"> Links </label>
+            <input type="text" name="linkcontent[]" class="form-control addcontent">
+            <div id="new" class="new" onclick="addfield()"><img src="add.svg" class="add"></div>
+            <small class="form-text text-muted"> The main content of your presentation, as links to other websites. Youtube and Vimeo work best. <br> (Press the + to add more input fields. If you accidentally add too many, just leave them blank.)</small>
         </div>
         <div class="form-group"> 
             <label for="caption"> Caption text </label>
-            <textarea name="caption" class="form-control" rows="5"> </textarea>
-            <small class="form-text text-muted"> This text will display beneath the main content of your presentation to explain it. (Optional) </small>
+            <textarea name="caption" class="form-control" rows="5" required> </textarea>
+            <small class="form-text text-muted"> This text will display beneath the main content of your presentation to explain it. </small>
         </div>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
         </form>

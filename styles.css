@@ -88,6 +88,11 @@ h1 {
 	margin: 0 60px;
 }
 
+.pagecontent > h1 {
+	max-width: 100%;
+	overflow-wrap: break-word; 
+}
+
 .pageitem {
 	flex-grow: 1;
 	/*flex: 1 1 0;*/
@@ -110,11 +115,11 @@ h1 {
 	width: 100%;
 	text-align: center;
 	margin: 20px;
+	white-space: pre-line;
 	/*position: absolute;
 	bottom: 0;*/
 }
 .pageitem > * {
-	/*width: 100%;*/
 	height: 100%;
 	object-fit: contain;
 	/*position: absolute;*/
