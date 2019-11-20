@@ -1,0 +1,183 @@
+/*  css is a cancer upon this earth
+	I will burn it to the ground and
+	salt the ground upon which it stood  */
+
+body {
+    font-family: "Times New Roman", Times, serif;
+	overflow-x: hidden;
+	margin: 0;
+}
+h1 {
+	text-align: center;
+	color: #303030;
+}
+.stzcontainer{
+	position: relative;
+}
+.stanz {
+	white-space: pre-wrap;
+	margin-block-start: 0em;
+	margin-block-end: 0.25em;
+	padding: 5px;
+}
+.stanz:hover{
+	background-color: #fcca72;
+	transition: 0.2s;
+}
+.poemfooter {
+	margin: 0px;
+	margin-right: 10px;
+	text-align: right;
+}
+.main {
+	padding: 0 10px 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+	margin-bottom: 100px;
+}
+.text {
+	border: 2px solid #fcca72;
+	padding: 15px;
+}
+.desccontent {
+	margin-block-start: 0em;
+	padding: 0px 5px 5px 5px;
+	display: inline-block
+}
+.desc {
+	position: absolute;
+	top: 0;
+	width: 145%;
+	left: calc(100% + 20px);
+	display: none;
+}
+.openpage {
+	margin-top: auto;
+	margin-bottom: auto;
+	color: #404040;
+	display: inline-flex;
+	margin: 4px;	
+	padding:  5px 10px 5px 5px;
+	line-height: 50px;
+}
+.openpage:hover {
+	text-decoration: none;
+	color: #f0f0f0;
+	background-color: #404040;
+}
+.page {
+	font-family: sans-serif;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: calc(100vw - 60px);
+	height: calc(100vh - 60px);
+	background-color: #D8D8D8;
+	z-index: 2;
+	display: none;
+}
+
+.pagecontent {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.pageitem {
+	flex-grow: 1;
+	/*flex: 1 1 0;*/
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	/*height: 100%;*/
+	height: 1px;
+	margin: 0;
+	position: relative;
+	overflow: hidden;
+	justify-content: space-evenly;
+}
+
+.pageitem > {
+	width: 100%;
+}
+
+.plainitem {
+	width: 100%;
+	text-align: center;
+	margin: 20px;
+	/*position: absolute;
+	bottom: 0;*/
+}
+.pageitem > * {
+	/*width: 100%;*/
+	height: 100%;
+	object-fit: contain;
+	/*position: absolute;*/
+	/*margin: 0 auto 0 auto;*/
+	flex-shrink: 1;
+}
+.pageitem > div {
+	width: 50%;
+    height: 100%;
+}
+.pageitem iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.closebutton {
+	position: absolute;
+	height: 40px;
+	padding: 10px;
+	z-index: 5;
+	top: 0;
+}
+.side {
+	margin-left: 0;
+}
+.thumb {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+}
+.openpage > img {
+	margin-right: 20px;
+}
+.footer {
+	position: absolute;
+	background-color: #fcca72;
+	width: 100vw;
+	height: 1.5em;
+	padding: .25em;
+}
+.footer > * {
+	margin-block-start: 0;
+	margin-block-end: 0;
+	color: #b06f2e;
+	padding: 0.25em 30px 0 10px;
+	display: inline-block;
+}
+.footer a {
+	color: #995918;
+}
+.fscreen {
+    margin: 0;
+	padding: 0;
+	position: absolute;
+	height: 40px;
+    width: 40px;
+    left: calc(25% - 50px);
+	z-index: 3;
+}
+.fscreenitem {
+    z-index: 4;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+}

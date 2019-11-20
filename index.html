@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- 
+Hi! I see you digging around in the source code there! You should add me on discord.
+timgor#4817
+We can talk about how fun it is to take things apart.
+-->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+	<script src='script.js'></script>
+</head>
+<body translate="no">
+	<h1 id="title"></h1>
+	<div class="main">
+		<div class="text"></div>
+	</div>
+	<div class="footer">
+		<p>
+			BHS Choir 2019
+		</p>
+		<p style="float: right;">
+			Direct all suggestions and abuse to <a href="mailto:egor.vladone@gmail.com"> Egor Vinogradov </a>
+		</p>
+	</div>
+    <!-- 
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣶⣿⣿⣿⣿⣶⣮⣭⣥⣭⣁⣐⠠⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡒⠌⠐⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⠿⠿⠛⡟⣛⣀⡀⠀⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠀⠀⢀⡏⣹⣿⣿⣿⣿⣿⣿⢿⣿⡿⠟⢋⣉⣠⣤⣶⣷⣿⣿⣿⣿⣿⣿⣷⣄⣷⣧⡀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣶⣾⣿⣿⣿⣿⣿⡿⠟⣻⣿⡦⠽⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣯⣼⣿⣿⣿⡇⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣿⠇⠀⠀⢸⣿⢻⣿⣿⣿⣿⢼⣿⣿⡿⠘⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⣴⣿⣶⡶⠦⢄⡿⢸⠟⠉⠙⠋⠀⣻⣿⣶⣤⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⡵⢃⣿⣿⣿⣷⣶⡄⠀⠀⠀⠀⠀⠀⠈⢸⣿⣿⣏⣹⣿⣿⣿⣿⠇⠁⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⢸⠁⠸⣿⣿⣿⠧⢿⠇⠀⠀⠀⠀⠀⠀⠀⢸⡿⢿⡿⣿⢸⣿⣿⣯⣀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣧⣄⠘⡀⠀⢯⡀⠉⢀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⣤⡤⠋⠈⢻⣿⣿⡿⢷⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣩⣅⢨⡇⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⠟⠻⠏⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⡇⠀⢂⠀⠀⠀
+    ⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣟⣏⣰⣦⣼⣠⠄⠀⠀⠀⠀⠀⠀⠀⢰⣾⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣷⣴⡿⠀⠀⠀
+    ⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⡿⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⠏⠉⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⠛⠁⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠃⠒⢤⠄⠀⠀⠀⠤⠤⠀⢲⣾⣿⣿⣿⣿⣿⣿⡿⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠈⠙⠋⠙⠿⠿⠿⣿⣿⣿⣿⣿⢻⣿⣷⣄⠀⠀⠑⠠⡀⢀⠂⠀⠀⣾⣿⡟⢿⣿⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠙⠻⠎⠀⢻⣿⣿⣷⣤⣀⠀⢀⠋⠒⢤⣾⣿⣿⡇⠀⠩⠁
+    -->
+</body>
+</html>

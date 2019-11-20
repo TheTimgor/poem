@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style>
+        form {
+            width: 100%;
+            border: 1px solid #007bff;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px auto;
+        }
+        .prescontent {
+            position: relative;
+            top: 0;
+            left: 0;
+            min-height: 4em;
+        }
+        @media only screen and (min-width: 400px) {
+            form {
+                width: 50%;
+                min-width: 400px;
+            }
+        }
+    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+    var stzs = []
+        window.onload = function(){
+            window.addEventListener("keydown", function(e){
+                if(e.key=='Enter'){
+                    e.preventDefault();
+                }
+            });
+            const Http = new XMLHttpRequest();
+            const url='poem.json';
+            Http.open('GET', url);
+            Http.responseType = 'json';
+            Http.onreadystatechange = (e) => {
+                if(Http.response){
+                    stzs = Http.response.stanzas;
+                    document.getElementById('stanza').max = stzs.length;
+                    updatepreview();
+                }
+            }
+            Http.send();
+        }
+        function updatepreview(){
+            document.getElementById('stztext').innerText = stzs[document.getElementById('stanza').value-1];
+        }
+        function toggleoption(){
+            for(e of document.getElementsByClassName('nav-link')){
+                e.classList.toggle('active')
+            }
+            for(e of document.getElementsByClassName('prescontent')){
+                e.classList.toggle('d-none')
+            }
+            for(e of document.getElementsByClassName('addcontent')){
+                if(e.required){
+                    e.removeAttribute('required');
+                } else {
+                    e.setAttribute('required', '')
+                }
+            }
+        }
+    </script>
+  </head>
+  <body>
+    <form action="input.php" method="post" enctype="multipart/form-data">
+        <div class="form-group"> 
+            <label for="name"> Your name </label>
+            <input type="text" name="name" class="form-control" required> </textarea>
+        </div>
+        <div class="form-group"> 
+            <label> Your stanza of the poem </label>
+            <div class="row">
+                <div class="col-sm-2">
+                    <input onchange="updatepreview()" id="stanza" type="number" name="stanza" class="form-control" min="1" max="1" value="1" required> </textarea>
+                </div>
+                <div class="col">
+                    <small class="form-text text-muted" id="stztext" style="height:5em;"></small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group"> 
+            <label for="desc" required> Title text </label>
+            <textarea name="desc" class="form-control" rows="2"> </textarea>
+            <small class="form-text text-muted"> This text will display next to your presentation's icon.</small>
+        </div>
+        <div class="form-group">
+            <label for="icon"> Icon (only if needed) </label>
+            <input type="file" name="icon" class="form-control-file">
+            <small class="form-text text-muted"> This image will show up as a small preview of your presentation. 
+            <br> (Optional. Images and video links will have icons generated automatically.) </small>
+        </div>
+        <div class="form-group">
+                <label for="filecontent"> File </label>
+                <input type="file" name="filecontent" class="form-control-file addcontent" required>
+                <small class="form-text text-muted"> The main content of your presentation. Can be an image, pdf, or .txt file. </small>
+        </div>
+        <div class="form-group">
+                <label for="linkcontent"> Link </label>
+                <input type="text" name="linkcontent" class="form-control addcontent">
+                <small class="form-text text-muted"> The main content of your presentation, as a link to another website. Youtube and Vimeo work best.</small>
+        </div>
+        <div class="form-group"> 
+            <label for="caption"> Caption text </label>
+            <textarea name="caption" class="form-control" rows="5"> </textarea>
+            <small class="form-text text-muted"> This text will display beneath the main content of your presentation to explain it. (Optional) </small>
+        </div>
+        <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+        </form>
+  </body>
+  <!-- 
+    ⠀⠀⠀⢸⠀⠀⠀⠀⠠⡀⠀⡠⠋⠁⠀⠀⠀⠀⠀⠉⠻⣿⣯⣿⣿⣿⣿⣿⣿⡇⠀⠈⠢⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⢸⠀⠀⠀⠘⠁⡠⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠛⠿⠿⠿⠿⠷⠦⡄⠀⠀⡀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠈⠀⠀⠀⢀⠌⠀⠀⠀⠀⠀⠀⠀⡰⢁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠁⠐⠒
+    ⠀⠀⠀⠀⠇⠀⢀⠂⠀⠀⠀⠀⠀⠀⠀⡰⢀⡆⠀⠀⠀⠀⠀⠀⡠⠀⡄⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⢞⠀⠌⠀⠀⠀⡀⠀⠠⣀⢊⢃⠂⠀⠀⠀⠀⠀⠀⠔⢀⠞⠃⠀⠀⠀⠀⠀⠀⠀⠈⢃⠖⠀⠀⠀
+    ⠀⠠⠂⠁⠙⡘⢀⠂⠀⠰⠀⠀⡠⠉⢺⠆⠀⡆⠀⠀⠀⢰⣎⣠⣂⣀⠀⠰⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⢀
+    ⠀⠁⠀⠀⠀⠃⣨⠀⠀⠇⢀⣰⢁⠀⠸⠀⠀⠃⠀⠀⢀⠚⡐⠁⠀⠀⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠁
+    ⠃⠀⠀⠀⢰⢠⢹⠀⠀⠀⠠⠉⠉⣙⣷⠆⠀⠘⡀⠠⠃⢋⡤⣤⣤⣤⣴⡀⠀⠀⠀⠐⠀⠀⠀⠀⡤⠊⠀⠀
+    ⠐⡄⠀⠀⢸⡈⠈⠀⢰⠀⡂⠈⠉⠀⠀⠀⠀⠀⠁⠁⠀⠀⠙⠷⣤⣀⠃⠀⠀⠀⢀⠃⠀⢀⢴⣯⡠⠀⠀⠀
+    ⡤⠞⠓⠂⢺⠣⠒⠆⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠟⠀⠀⠀⠀⠎⣀⢤⠽⠆⠃⠉⠢⠠⠀
+    ⠀⠀⠀⠀⠘⠀⠀⠐⡀⠃⢣⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠌⠀⠀⢀⠀⠌⠜⢴⠉⠀⠀⠀⠀⠀⠀⠘
+    ⠀⠠⠊⠉⢂⠀⠀⠀⢱⢀⠏⠑⣄⠀⠀⠀⠀⠊⠀⠀⠀⠀⠀⠋⠀⢀⡔⢁⢊⠃⡸⢰⠀⠀⠀⠀⠀⠀⠀⢨
+    ⡔⠀⢠⣶⡖⣓⡄⠀⠘⡸⡷⠀⡏⠕⢄⡀⠀⠀⠀⠀⢀⡐⠁⢀⢴⠝⠐⡠⡎⡐⢠⢐⣂⡀⠀⠀⢸⠀⣀⠎
+    ⡇⣰⣿⣿⠀⠠⠐⡄⢀⠃⠁⠣⣁⠈⠂⠉⣙⠿⠟⠛⠙⢀⡴⠥⣋⣀⡪⠑⠔⠀⠘⡈⠀⠑⠢⠀⠺⣗⠀⠀
+    ⢰⣿⣿⣿⡆⢖⡀⠃⢸⠀⣀⡀⠐⢍⠉⠁⠀⠀⠀⠠⢡⡚⠀⠀⢠⠚⡃⠀⢀⣀⣀⠁⠀⠀⠀⠀⠀⠙⣿⣿
+    ⣼⣿⣿⣿⣧⠸⠀⢀⠞⠀⠇⢀⠕⠲⠗⠀⠀⠀⠀⡰⢁⠁⣄⡠⠜⠓⢀⠏⠀⠀⠀⠀⢄⠀⠀⠀⠀⠀⠘⣿
+    ⣿⣿⣿⣿⡟⠁⢠⠃⠀⠑⢐⠎⠀⢀⠏⠀⠀⠈⠙⠁⠈⠘⠀⠀⠀⠀⡌⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⠀⠀⠈
+    ⣿⣿⣿⣿⠃⣆⠂⠀⠀⠀⠎⠀⡊⠀⠀⠀⠀⠀⠀⠡⡇⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀
+    ⣿⣿⣿⠃⠀⡭⡀⠄⠂⠉⠀⢠⠀⠀⠀⠀⠀⠀⣠⠀⡬⠆⠀⡠⠐⠾⡊⠉⠡⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀
+    ⣿⡿⠁⢀⠔⠁⠀⠀⠀⠀⠀⠈⠁⠀⠀⢀⠔⠋⠀⠐⠁⠀⠒⠓⠄⢀⣨⡇⠀⠃⠀⠀⠀⠘⡀⠀⠀⠀⠀⠀
+    ⠋⠁⢰⠃⠀⠀⠀⠀⠀⠀⠀⠠⠦⠀⠀⠀⠀⠀⠀⠀⠀⠉⠢⠀⠀⣼⣿⣿⣦⣼⣾⣿⣿⣷⡇⠀⠀⠀⠀⠀
+    ⠀⣀⢼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⢆⠀⠀⣼⣿⣿⣿⠿⠛⠁⠙⠻⣿⡇⠀⠀⠀⠀⠀
+    ⠟⠛⢸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠈⠳⢀⠀⠀⠀⠀
+    ⢠⠁⠀⠣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⡇⠲⠶⢤⣄⣀⣀⣀⣡
+   -->
+</html>
