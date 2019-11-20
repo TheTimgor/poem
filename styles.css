@@ -114,10 +114,9 @@ h1 {
 .plainitem {
 	width: 100%;
 	text-align: center;
-	margin: 20px;
+	padding: 20px;
 	white-space: pre-line;
-	/*position: absolute;
-	bottom: 0;*/
+	box-sizing: border-box;
 }
 .pageitem > * {
 	height: 100%;
