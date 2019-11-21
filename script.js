@@ -90,7 +90,7 @@ $(document).ready(function(){
 							$desc.find('.pagecontent').prepend($('<h1/>').text(desc));
 						});
 					} else if(name && name.toLowerCase() == "icon"){
-                        $desc.find('.thumb').attr('src',path);
+                        $desc.find('.thumb').attr('src',path).addClass('override');
                     } else{
 						let $pageitem = $desc.find('.pageitem');
 						let $thumb = $desc.find(".thumb");
@@ -98,7 +98,8 @@ $(document).ready(function(){
 						// if someone finds an unsupported file type I will kashoot myself
 						if(["jpg","jpeg","jfif","pjpeg","pjp","png","svg","tif","tiff","webp","gif"]
 							.includes(ext)){
-							if(!$thumb.attr("src")) $thumb.attr('src',path);
+							if(!$thumb.is(".override")) 
+								$thumb.attr('src',path).addClass('generated');
                             $pageitem.append($('<img/>').attr('src',path))
 						} else if(["txt", ""].includes(ext)) {
 							$.get(path, function(text){
@@ -110,21 +111,25 @@ $(document).ready(function(){
 									if(src.includes("youtube")){
 // 										console.log('youtube')
 										let id = src.split("?v=").slice(-1)[0]
-										if(!$thumb.attr("src"))$thumb.attr("src","https://img.youtube.com/vi/"+id+"/default.jpg");
+										if(!$thumb.is(".override")) 
+											$thumb.attr("src","https://img.youtube.com/vi/"+id+"/default.jpg").addClass('generated');
 										$frame.attr("src","https://www.youtube.com/embed/"+id);
 									} else if (src.includes("vimeo")){
 // 										console.log('vimeo')
 										let id = src.split("/").slice(-1)[0]
 										$frame.attr("src","https://player.vimeo.com/video/"+id);
-										if(!$thumb.attr("src")) $thumb.attr("src","playdefault.svg");
+										if(!$thumb.is(".override, .generated")) 
+											$thumb.attr("src","playdefault.svg");
 									} else {
 										$frame.attr("src",src);
-                                        if(!$thumb.attr("src")) $thumb.attr("src","linkdefault.svg");
+                                        if(!$thumb.is(".override, .generated")) 
+                                        	$thumb.attr("src","linkdefault.svg");
 									}
 									let $fwrapper = $('<div/>').append($frame)
                                     $pageitem.append($fwrapper);
 								} else {
-									if(!$thumb.attr("src")) $thumb.attr("src","textdefault.svg");
+									if(!$thumb.is(".override, .generated")) 
+										$thumb.attr("src","textdefault.svg");
 									$plainitem = $('<p/>').text(text).addClass('plainitem');
                                     $desc.find('.pagecontent').append($plainitem);
 								}
@@ -134,10 +139,11 @@ $(document).ready(function(){
                             $frame.attr('src',path)
                             let $fwrapper = $('<div/>').append($frame)
                             $pageitem.append($fwrapper);
-                            $pageitem.append($('<img src="fullscreen.svg" class="fscreen">').click(function(){
+                            $fwrapper.append($('<img src="fullscreen.svg" class="fscreen">').click(function(){
                                 $frame.toggleClass('fscreenitem');
                             }));
-                            if(!$thumb.attr("src")) $thumb.attr("src","pdfdefault.svg");
+                            if(!$thumb.is(".override, .generated")) 
+                            	$thumb.attr("src","pdfdefault.svg");
                         }
 					}
 				}
