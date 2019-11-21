@@ -1,9 +1,10 @@
-/*  css is a cancer upon this earth
-	I will burn it to the ground and
-	salt the ground upon which it stood  */
+/*  twitter bootstrap look.
+	something about lipstick
+	on a pig 				  */
 
 body {
     font-family: "Times New Roman", Times, serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
 	overflow-x: hidden;
 	margin: 0;
 }
@@ -39,10 +40,12 @@ h1 {
 .text {
 	border: 2px solid #fcca72;
 	padding: 15px;
+	border-radius: 10px;
 }
 .desccontent {
+	max-width: 40%;
 	margin-block-start: 0em;
-	padding: 0px 5px 5px 5px;
+	padding: 5px;
 	display: inline-block
 }
 .desc {
@@ -58,8 +61,8 @@ h1 {
 	color: #404040;
 	display: inline-flex;
 	margin: 4px;	
-	padding:  5px 10px 5px 5px;
-	line-height: 50px;
+	padding:  10px;
+	line-height: 1.1em;
 }
 .openpage:hover {
 	text-decoration: none;
@@ -67,6 +70,7 @@ h1 {
 	background-color: #404040;
 }
 .page {
+	border-radius: 20px;
 	font-family: sans-serif;
 	position: fixed;
 	left: 0;
@@ -185,4 +189,18 @@ h1 {
     position: fixed;
     height: 100vh;
     width: 100vw;
+}
+.help {
+	padding: 10px;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #fcca72;
+	border-bottom-right-radius: 10px;
+	z-index: 10;
+}
+.help a {
+	text-decoration: underline;
+	color: #995918;
 }

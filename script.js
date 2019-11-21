@@ -11,6 +11,9 @@
 //
 // #####################################
 
+function hidehelp(){
+	$('.help').hide('slide');
+}
 var $openpage;
 function openpage(event) {
 	closepage();
@@ -31,23 +34,13 @@ function closepage() {
 		$openpage.hide("slide");
 	}
 }
-$.fn.toPx = function(settings){
-    settings = jQuery.extend({
-        scope: 'body'
-    }, settings);
-    var that = parseFloat(this[0]),
-        scopeTest = jQuery('<div style="display: none; font-size: 1em; margin: 0; padding:0; height: auto; line-height: 1; border:0;">&nbsp;</div>').appendTo(settings.scope),
-        scopeVal = scopeTest.height();
-    scopeTest.remove();
-    return Math.round(that * scopeVal);
-};
-
 $(document).on("keydown", function(event) {
 	if(event.key == "Escape") {
 		closepage();
 	}
 });
 $(document).ready(function(){
+	// $("#styles").attr('href', location.search.substring(1)+'.css')
 	$.getJSON("poem.json", function(poem){
 		$("#title").text(poem.title)
 		for(const i in poem.stanzas){
@@ -162,16 +155,9 @@ $(document).ready(function(){
 				.parent()
 				.find(".desc");
 			if ($open && $open[0] != $desc[0]) {
-				$open.hide("slide", {
-					
-				});
+				$open.hide("slide");
 			}
-			$desc.toggle("slide", {
-				direction: "left",
-				complete: function() {
-// 				console.log("toggled");
-			}
-		});
+			$desc.toggle("slide", {direction: "left"});
 		if($open && $open[0] == $desc[0]){
 			$open = undefined;
 		} else {
