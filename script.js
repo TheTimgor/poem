@@ -107,6 +107,11 @@ $(document).ready(function(){
 										if(!$thumb.is(".override")) 
 											$thumb.attr("src","https://img.youtube.com/vi/"+id+"/default.jpg").addClass('generated');
 										$frame.attr("src","https://www.youtube.com/embed/"+id);
+									} else if (src.includes('youtu.be')){
+										let id = src.split(".be/").slice(-1)[0]
+										if(!$thumb.is(".override")) 
+											$thumb.attr("src","https://img.youtube.com/vi/"+id+"/default.jpg").addClass('generated');
+										$frame.attr("src","https://www.youtube.com/embed/"+id);
 									} else if (src.includes("vimeo")){
 // 										console.log('vimeo')
 										let id = src.split("/").slice(-1)[0]
