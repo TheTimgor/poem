@@ -190,17 +190,3 @@ h1 {
     height: 100vh;
     width: 100vw;
 }
-.help {
-	padding: 10px;
-	margin: 0;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: #fcca72;
-	border-bottom-right-radius: 10px;
-	z-index: 10;
-}
-.help a {
-	text-decoration: underline;
-	color: #995918;
-}

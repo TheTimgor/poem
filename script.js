@@ -11,9 +11,6 @@
 //
 // #####################################
 
-function hidehelp(){
-	$('.help').hide('slide');
-}
 var $openpage;
 function openpage(event) {
 	closepage();
